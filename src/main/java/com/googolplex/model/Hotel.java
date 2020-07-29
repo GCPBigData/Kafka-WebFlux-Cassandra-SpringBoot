@@ -13,12 +13,12 @@ public class Hotel {
 
 	@PartitionKey
 	private String uuid;
-	@Column(name = "name")
-	private String name;
-	@Column(name = "phone")
-	private String phone;
+	@Column(name = "nome")
+	private String nome;
+	@Column(name = "telefone")
+	private String telefone;
 	@Column(name = "pois")
-	private Set<String> pois;
+	private Set<String> coidgo;
 
 	public String getUuid() {
 		return uuid;
@@ -28,27 +28,27 @@ public class Hotel {
 		this.uuid = uuid;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public Set<String> getPois() {
-		return pois;
+	public Set<String> getCoidgo() {
+		return coidgo;
 	}
 
-	public void setPois(Set<String> pois) {
-		this.pois = pois;
+	public void setCoidgo(Set<String> coidgo) {
+		this.coidgo = coidgo;
 	}
 }
