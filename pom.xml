@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.aardizio</groupId>
+	<artifactId>Spring-Reactive</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Spring-Reactive</name>
+	<description>Demo project for Spring Boot 2 + Spring 5 + Reactive Programming</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-boot-admin.version>2.0.0</spring-boot-admin.version>
+		<dse-driver.version>1.1.2</dse-driver.version>
+		<reactor.kafka.version>1.0.0.RELEASE</reactor.kafka.version>
+		<springfox.version>2.8.0</springfox.version>
+		<zalando.problem.version>0.22.0</zalando.problem.version>
+	</properties>
+
+	<dependencies>
+
+		  <!--We want to use dse-enterprise drivers -->	
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-mapping</artifactId>
+			<exclusions>
+           		<exclusion>
+                	<groupId>com.datastax.cassandra</groupId>
+               		 <artifactId>cassandra-driver-core</artifactId>
+          		 </exclusion>
+        	</exclusions>
+		</dependency>
+		<dependency>
+            <groupId>com.datastax.cassandra</groupId>
+            <artifactId>dse-driver</artifactId>
+            <version>${dse-driver.version}</version>
+       	</dependency>
+		<dependency>
+  			 <groupId>org.springframework.cloud</groupId>
+ 			 <artifactId>spring-cloud-starter-sleuth</artifactId>
+ 		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>  
+		<dependency>
+  			  <groupId>io.projectreactor.kafka</groupId>
+  			  <artifactId>reactor-kafka</artifactId>
+ 			   <version>${reactor.kafka.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<dependency>
+  		   <groupId>org.springframework.boot</groupId>
+  		   <artifactId>spring-boot-starter-data-rest</artifactId>
+  		</dependency>
+		 <dependency>
+   			<groupId>io.springfox</groupId>
+  			<artifactId>springfox-swagger2</artifactId>
+   			<version>${springfox.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>io.springfox</groupId>
+   			<artifactId>springfox-swagger-ui</artifactId>
+   			<version>${springfox.version}</version>
+ 		</dependency>  
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-cassandra</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-cassandra-reactive</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+	    <!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+          	    <groupId>io.kubernetes</groupId>
+			    <artifactId>client-java</artifactId>
+          </dependency>
+		  <!-- https://mvnrepository.com/artifact/org.zalando/problem -->
+		<dependency>
+				<groupId>org.zalando</groupId>
+				<artifactId>problem-spring-web</artifactId>
+				<version>${zalando.problem.version}</version>
+			</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.zalando/problem -->
+			<dependency>
+				<groupId>org.zalando</groupId>
+				<artifactId>problem</artifactId>
+    			<version>${zalando.problem.version}</version>
+			</dependency>
+			<dependency>
+    			<groupId>org.zalando</groupId>
+    			<artifactId>jackson-datatype-problem</artifactId>
+    			<version>${zalando.problem.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.zalando/problem-spring-web -->
+			<dependency>
+				<groupId>org.zalando</groupId>
+				<artifactId>problem-spring-web</artifactId>
+				<version>${zalando.problem.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			 <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RC1</version>
+                <type>pom</type>
+                <scope>import</scope>
+          </dependency>
+          <dependency>
+          	    <groupId>io.kubernetes</groupId>
+			    <artifactId>client-java</artifactId>
+    				<version>2.0.0-beta1</version>
+			    	<scope>compile</scope>
+          </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
