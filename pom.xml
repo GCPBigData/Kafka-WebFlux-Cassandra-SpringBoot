@@ -31,7 +31,7 @@
 
 	<dependencies>
 
-		  <!--We want to use dse-enterprise drivers -->	
+		  <!--We want to use dse-enterprise drivers -->
 		<dependency>
 			<groupId>com.datastax.cassandra</groupId>
 			<artifactId>cassandra-driver-mapping</artifactId>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>  
+        </dependency>
 		<dependency>
   			  <groupId>io.projectreactor.kafka</groupId>
   			  <artifactId>reactor-kafka</artifactId>
@@ -81,7 +81,7 @@
   			<groupId>io.springfox</groupId>
    			<artifactId>springfox-swagger-ui</artifactId>
    			<version>${springfox.version}</version>
- 		</dependency>  
+ 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

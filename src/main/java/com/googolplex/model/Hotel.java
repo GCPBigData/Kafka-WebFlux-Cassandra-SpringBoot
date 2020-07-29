@@ -1,4 +1,4 @@
-package com.aardizio.model;
+package com.googolplex.model;
 
 import java.util.Set;
 
@@ -20,5 +20,35 @@ public class Hotel {
 	@Column(name = "pois")
 	private Set<String> pois;
 
-	
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Set<String> getPois() {
+		return pois;
+	}
+
+	public void setPois(Set<String> pois) {
+		this.pois = pois;
+	}
 }

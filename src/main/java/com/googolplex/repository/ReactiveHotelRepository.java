@@ -1,25 +1,15 @@
-package com.aardizio.repository;
+package com.googolplex.repository;
 
 import org.springframework.data.cassandra.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-import com.aardizio.model.Hotel;
+import com.googolplex.model.Hotel;
 
 import reactor.core.publisher.Mono;
 
 public interface ReactiveHotelRepository extends ReactiveCrudRepository<Hotel, String> {
 
-    /**
-     * Derived query selecting by {@code lastname}.
-     *
-     * @param lastname
-     * @return
-     */
     Mono<Hotel> findByUuid(String id);
-
-    /**
-     * Delete by uuid.
-     */
     @Query("DELETE FROM HOTEL WHERE UUID=?0")
     Mono<Hotel> deleteByUuid(String id);
 

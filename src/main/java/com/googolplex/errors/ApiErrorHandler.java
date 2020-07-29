@@ -1,4 +1,4 @@
-package com.aardizio.errors;
+package com.googolplex.errors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,6 @@ public class ApiErrorHandler implements ProblemHandling {
 
 	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
 
-		log.error("Handling exception of type {} , for request path {}", ex.getClass(), request.getContextPath());
 		if (errors.containsKey(ex.getClass())) {
 			ApiError ae = errors.get(ex.getClass());
 			ae.setMessage(ex.getMessage());

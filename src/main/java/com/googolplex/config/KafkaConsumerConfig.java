@@ -1,4 +1,4 @@
-package com.aardizio.config;
+package com.googolplex.config;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,9 +1,9 @@
-package com.aardizio.client;
+package com.googolplex.client;
 
 
 import org.springframework.web.reactive.function.client.ClientResponse;
 
-import com.aardizio.errors.RestClientException;
+import com.googolplex.errors.RestClientException;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -17,7 +17,7 @@ public class RestClientErrorHandler {
     }
 
     public static  void handle(Throwable e){
-        log.error("{}",e);
+
     }
 
 }

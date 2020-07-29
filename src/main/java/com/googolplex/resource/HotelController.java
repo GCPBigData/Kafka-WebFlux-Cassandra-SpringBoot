@@ -1,12 +1,12 @@
-package com.aardizio.resource;
+package com.googolplex.resource;
 
 import brave.Tracer;
-import com.aardizio.client.RestClientExample;
-import com.aardizio.errors.ApiErrorHandler;
-import com.aardizio.errors.CustomException;
-import com.aardizio.errors.DefaultBusinessProblem;
-import com.aardizio.model.Hotel;
-import com.aardizio.repository.ReactiveHotelRepository;
+import com.googolplex.client.RestClientExample;
+import com.googolplex.errors.ApiErrorHandler;
+import com.googolplex.errors.CustomException;
+import com.googolplex.errors.DefaultBusinessProblem;
+import com.googolplex.model.Hotel;
+import com.googolplex.repository.ReactiveHotelRepository;
 import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.policies.DowngradingConsistencyRetryPolicy;
@@ -58,7 +58,6 @@ public class HotelController {
 	@GetMapping(value = "/clientExample", produces = { MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody Flux<Hotel> clientExample() {
-		log.info("Client example start");
 		return hotelRestClient.getAllHotels();
 	}
 
@@ -67,7 +66,6 @@ public class HotelController {
 	public Mono<Hotel> delete(@PathVariable String id) {
 
 		tracer.currentSpan().tag("hotelid", id);
-		log.info("deleting a journal");
 		return hotelRepo.deleteByUuid(id);
 	}
 
@@ -75,7 +73,7 @@ public class HotelController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody Mono<Hotel> create(@RequestBody Hotel hotel) {
 		tracer.currentSpan().tag("hotelid", hotel.getUuid());
-		log.info("creating a journal 1");
+
 
 		return hotelRepo.save(hotel).flatMapMany(h -> {
 			ProducerRecord<String, String> record = new ProducerRecord<String, String>("prova", null, hotel.getUuid(),
@@ -90,7 +88,6 @@ public class HotelController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Mono<Hotel> search(@PathVariable String uuid) {
 		tracer.currentSpan().tag("hotelid", uuid);
-		log.info("Search gas");
 		return hotelRepo.findByUuid(uuid);
 	}
 

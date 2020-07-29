@@ -1,4 +1,4 @@
-package com.aardizio.client;
+package com.googolplex.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.aardizio.model.Hotel;
+import com.googolplex.model.Hotel;
 
 import reactor.core.publisher.Flux;
 

@@ -1,4 +1,4 @@
-package com.aardizio.errors;
+package com.googolplex.errors;
 
 import org.springframework.http.HttpStatus;
 

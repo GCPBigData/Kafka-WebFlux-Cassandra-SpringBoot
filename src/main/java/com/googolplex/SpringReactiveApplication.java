@@ -1,8 +1,8 @@
-package com.aardizio;
+package com.googolplex;
 
-import com.aardizio.errors.ApiError;
-import com.aardizio.errors.ApiErrorHandler;
-import com.aardizio.errors.CustomException;
+import com.googolplex.errors.ApiError;
+import com.googolplex.errors.ApiErrorHandler;
+import com.googolplex.errors.CustomException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,6 @@ public class SpringReactiveApplication implements ApplicationListener<Applicatio
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		apiErrorHandler.register(CustomException.class, new ApiError(HttpStatus.BAD_REQUEST, "002", "3"));
 		receiver.receive().subscribe(r -> {
-			log.info("Received message: %s\n", r);
 			r.receiverOffset().acknowledge();
 		});
 	}

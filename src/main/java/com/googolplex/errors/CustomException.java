@@ -1,4 +1,4 @@
-package com.aardizio.errors;
+package com.googolplex.errors;
 
 public class CustomException extends  Exception {
 
